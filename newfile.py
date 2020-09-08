@@ -1,2 +1,2 @@
 print("Hello world")
-# Its works
+# It works
