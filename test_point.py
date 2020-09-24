@@ -1,4 +1,4 @@
-from point import *
+from src.point import *
 from math import sqrt
 
 def test_empty_Point():
