@@ -1,5 +1,8 @@
 from point import *
 
+"""TODO:
+* Add integer trajectory generators
+"""
 class Trajectory:
     def __init__(self, points = []):
         self.points = points
