@@ -1,14 +1,18 @@
 from point import *
+from random import randint
 
-"""TODO:
-* Add integer trajectory generators
-"""
 class Trajectory:
     def __init__(self, points = []):
         self.points = points
 
     def __len__(self):
         return len(self.points)
+    
+    def __str__(self):
+        string = ''
+        for p in self.points:
+            string+= str(p) + '; '
+        return '[' + string + ']'
     
     def add_Point(self,point):
         self.points.append(point)
@@ -31,3 +35,11 @@ class Trajectory:
     def concat(self,o):
         self.points += o.points
         return self
+    
+    @staticmethod
+    def generate_traj(n):
+        temp = []
+        for i in range(n):
+            temp.append(Point(randint(0,50),randint(0,50)))
+        return Trajectory(points = temp)
+
