@@ -24,3 +24,13 @@ def test_simple_graph3():
     g1.addNode("A")
     g2.addNode("C")
     assert g1.graph != g2.graph 
+
+def test_add_same_Nodes_Vertices():
+    g = Graph()
+    g.addNode('A')
+    g.addNode('A')
+    g.addNode('B')
+    g.addNode('C')
+    g.addVertice('A','C')
+    g.addVertice('A','C')
+    assert g.graph == {'A': ['C'], 'B': [], 'C': []}
