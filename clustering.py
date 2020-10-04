@@ -35,7 +35,7 @@ def defineBounds(s):
                 bottom = point.y
     return [top, bottom, left, right]
 
-def temp(s,epsillon):
+def trajectory_clustering(s,epsillon):
     sol = Graph()
     for traj in s :
         traj = convertTrajectory(traj, 0.5)
@@ -43,11 +43,19 @@ def temp(s,epsillon):
     #top, bottom, left, right = bounds[0], bounds[1], bounds[2], bounds[3]
     #vert = np.arange(bottom,top,epsillon)
     #hor = np.arange(left,right,epsillon)
-    #for traj in s :
+        isFirstPoint = True
+        lastPoint = None
         for p in traj:
             x = (p.x - p.x%epsillon) + epsillon/2
             y = (p.y - p.y%epsillon) + epsillon/2
             sol.addNode((x,y))
+            if not isFirstPoint and lastPoint != (x,y) :
+                sol.addVertice(lastPoint,(x,y))
+            else :
+                isFirstPoint = False
+            lastPoint = (x,y)
+            
+            #lastPoint = (x,y)
             #sol.addNode(Point(x,y)
     #m = np.zeros((len(vert),len(hor)))
     #for i in vert:
@@ -56,32 +64,9 @@ def temp(s,epsillon):
     print(sol.graph)
     return sol
 
-
-def trajectory_clustering(initialSet,epsillon):
-    convertedSet = []
-    for tra in initialSet:
-        convertedSet.append(convertTrajectory(tra,epsillon))
-    pass
-
-traj = Trajectory.generate_traj(2)
-t = Trajectory(points=[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)])
-s = [[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)],[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)],
-[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)],[Point(1,1),Point(15,15)]
-    
-]
+#traj = Trajectory.generate_traj(2)
+#t = Trajectory(points=[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)])
+#s = [[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)],[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)],
+#[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)],[Point(1,1),Point(15,15)]]
 #[Point(1.2,1.2),Point(2.2,2.2),Point(3.2,3.2),Point(4.2,4.2),Point(5.2,5.2),Point(6.2,6.2)],
   #  [Point(10.2,10.2),Point(2.2,2.2),Point(50,50),Point(4.1,4.7),Point(0,0),Point(4.1,4.7),Point(0,0)]
-temp(s,1)
-
-a = 19.3
-ep = 0.5
-# sol = 9.75
-print((a - a%ep) + ep/2)
-
-
-#######
-#print(Trajectory(points=convertTrajectory(t.points,1)))
-#traj[index].distance(traj[index + 1])
-#print(len(convertTrajectory(traj.points,0.6)))
-#print(traj.points[0].distance(traj.points[1]))
-#temp2()

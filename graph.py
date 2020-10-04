@@ -33,11 +33,3 @@ class Graph:
         for keys in self.graph.keys:
             self.graph[keys].remove(p)
 
-g = Graph()
-g.addNode('A')
-g.addNode('A')
-g.addNode('B')
-g.addNode('C')
-g.addVertice('A','C')
-g.addVertice('A','C')
-print(g.graph)

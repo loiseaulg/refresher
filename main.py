@@ -29,4 +29,11 @@ print(g.graph)
 g.addNode("B")
 print(g.graph)
 
+d = {
+    (1,1):[(2,2)],
+    (2,2):[(3,3),(1,1)],
+    (3,3):[]
+}
+print(d[(1,1)])
+
 
