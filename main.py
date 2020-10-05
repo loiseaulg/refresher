@@ -36,4 +36,8 @@ d = {
 }
 print(d[(1,1)])
 
+if __name__ == "__main__":
+    app = App()
+    pass
+
 
