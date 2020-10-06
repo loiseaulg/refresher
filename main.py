@@ -36,8 +36,12 @@ d = {
 }
 print(d[(1,1)])
 
-if __name__ == "__main__":
-    app = App()
-    pass
+import matplotlib.pyplot as plt
+x_coordinates = [1, 2, 3, 2]
+y_coordinates = [1, 2, 1, 1]
+
+plt.scatter(x_coordinates, y_coordinates)
+plt.plot(x_coordinates, y_coordinates)
+plt.show()
 
 
