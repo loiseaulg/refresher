@@ -10,6 +10,7 @@ def plotGraph(graph):
             x = [key[0],p[0]]
             y = [key[1],p[1]]
             plt.plot(x,y,color='g')
+            plt.title("Clustered trajectories")
 
 def plotData(data):
     for traj in data:
@@ -19,6 +20,7 @@ def plotData(data):
             x.append(p.x)
             y.append(p.y)
         plt.plot(x,y,color='r')
+        plt.title("Raw trajectories")
 
 class App():
     def __init__(self,epsillon):
@@ -31,8 +33,6 @@ class App():
         plt.subplot(122)
         plotData(data)
         plt.show()
-
-a = App(0.1)
 #print(build_trajectory_set())
 #data = Trajectory(points=build_trajectory_set())
 #print(data)
