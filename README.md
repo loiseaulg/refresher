@@ -5,7 +5,7 @@ Loiseau Gabriel
 
 ----
 
-#### 🔺 To make the code work, you have to add a folder "cabspottingdata" to thisproject and add some trajectories in csv files
+#### 🔺 To make the code work, you have to add a folder "cabspottingdata" to this project and add some trajectories in csv files
 
 ----
 

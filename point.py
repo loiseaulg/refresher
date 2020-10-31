@@ -1,5 +1,7 @@
 from math import sqrt
 
+#Remark : this class will only be use when the distance method will be needed
+# However, in some places it will be replaces by a tuple
 class Point:
     def __init__(self, x = 0, y = 0):
         self.x = x
