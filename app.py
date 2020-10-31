@@ -5,6 +5,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def plotGraph(graph):
+    """Plot a result graph of trajectories using Matplotlib
+
+    Args:
+        graph (dictionnary)
+    """
     for key in graph:
         for p in graph[key]:
             x = [key[0],p[0]]
@@ -13,6 +18,11 @@ def plotGraph(graph):
             plt.title("Clustered trajectories")
 
 def plotData(data):
+    """Plot original trajectories (pre-processed)
+
+    Args:
+        data (array)
+    """
     for traj in data:
         x = []
         y = []
@@ -23,6 +33,8 @@ def plotData(data):
         plt.title("Raw trajectories")
 
 class App():
+    """Main class for our application
+    """
     def __init__(self,epsillon):
         data = build_trajectory_set()
         top, bottom, left, right = defineBounds(data)
@@ -33,17 +45,3 @@ class App():
         plt.subplot(122)
         plotData(data)
         plt.show()
-#print(build_trajectory_set())
-#data = Trajectory(points=build_trajectory_set())
-#print(data)
-#graph = trajectory_clustering(data.points,epsillon=1)
-#print(graph.graph)
-#for p in graph.graph.keys:
-#    plt.scatter(p[0],p[1])
-#plt.show()
-#t = [Point(1,1),Point(1,2),Point(3,3),Point(4,2)]
-#print("choco")
-#print(build_trajectory_set()[0])
-#print(convertTrajectory(build_trajectory_set()[0],1))
-#print(convertTrajectory(build_trajectory_set()[0],1))
-#print(trajectory_clustering(build_trajectory_set(),0.1).graph)

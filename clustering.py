@@ -1,7 +1,4 @@
 from graph import Graph
-import point
-import trajectory
-import graph
 from point import *
 from trajectory import Trajectory
 import math
@@ -33,6 +30,15 @@ def convertTrajectory2(points, epsillon, index=0):
         return points
 
 def convertTrajectory(points, epsillon):
+    """Iterative version of the function above, allowing us to use it on a bigger dataset without any risk of overflow
+
+    Args:
+        points (array): the initial list of points
+        epsillon (float): distance max between two points
+
+    Returns:
+        array: the new trajectory
+    """
     index = 0
     while index < len(points) - 1:
         if points[index].distance(points[index + 1]) > epsillon :
@@ -42,8 +48,27 @@ def convertTrajectory(points, epsillon):
             index+=1
     return points
 
+def hybrid_convertTrajectory(points, epsillon):
+    """Hybrid version of the convertTrajectory function
+
+    Args:
+        points (array): the initial list of points
+        epsillon (float): distance max between two points
+
+    Returns:
+        array: the new trajectory
+    """
+    #An exact study of when the trajectory set is said to be expensive could be done, values here are from empirical experiences
+    #isTooExpensive = len(points) > 10 and epsillon <= 0.1 or len(points) > 20
+    #We will consider here that to be significative for clustering, trajectories must be tall enough, so evevy one of them will be too expensive
+    isTooExpensive = True
+    if isTooExpensive :
+        return convertTrajectory(points, epsillon)
+    else :
+        return convertTrajectory2(points, epsillon)
+
 def defineBounds(s):
-    """defines the boundaries of a set of points
+    """defines the boundaries of a set of points, useful for plotting
 
     Args:
         s (array): set of multiple trajectories
@@ -76,7 +101,7 @@ def trajectory_clustering(s,epsillon):
     """
     sol = Graph()
     for traj in s :
-        traj = convertTrajectory(traj, epsillon)
+        traj = hybrid_convertTrajectory(traj, epsillon)
         isFirstPoint = True
         lastPoint = None
         for p in traj:
@@ -84,21 +109,8 @@ def trajectory_clustering(s,epsillon):
             y = (p.y - p.y%epsillon) + epsillon/2
             sol.addNode((x,y))
             if not isFirstPoint and lastPoint != (x,y) :
-                sol.addVertice(lastPoint,(x,y))
+                sol.addEdge(lastPoint,(x,y))
             else :
                 isFirstPoint = False
             lastPoint = (x,y)
-    #print(sol.graph)
     return sol
-
-#traj = Trajectory.generate_traj(2)
-#t = Trajectory(points=[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)])
-#s = [[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)],[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)],
-#[Point(1,1),Point(2,2),Point(3,3),Point(4,4),Point(5,5),Point(6,6)],[Point(1,1),Point(15,15)]]
-#[Point(1.2,1.2),Point(2.2,2.2),Point(3.2,3.2),Point(4.2,4.2),Point(5.2,5.2),Point(6.2,6.2)],
-  #  [Point(10.2,10.2),Point(2.2,2.2),Point(50,50),Point(4.1,4.7),Point(0,0),Point(4.1,4.7),Point(0,0)]
-
-      #bounds = defineBounds(s)
-    #top, bottom, left, right = bounds[0], bounds[1], bounds[2], bounds[3]
-    #vert = np.arange(bottom,top,epsillon)
-    #hor = np.arange(left,right,epsillon)

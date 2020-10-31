@@ -6,7 +6,7 @@
 #    'E': ['F'],
 #    'F': ['C'],
 #}
-
+# A graph will be represented as above
 class Graph:
     def __init__(self, fromList=None):
         if fromList == None :
@@ -21,11 +21,11 @@ class Graph:
             self.graph[p] = []
             self.nbNodes += 1
     
-    def addVertice(self, v1, v2): # addVertice(self, v1, v2) != addVertice(self, v2, v1)
+    def addEdge(self, v1, v2): # addEdges(self, v1, v2) != addEdges(self, v2, v1)
         if v2 not in self.graph[v1]:
             self.graph[v1].append(v2)
     
-    def removeVertice(self, v):
+    def removeEdge(self, v):
         self.graph[v] = self.graph[v].remove(v)
     
     def removeNode(self,p):
