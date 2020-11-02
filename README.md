@@ -10,7 +10,7 @@ Loiseau Gabriel
 ----
 
 ## General informations
-Project made for my Data Science Degree in the [University of Lille](https://www.univ-lille.fr/), the goal of this project is to implement a clustering algorithm in python which will be use on trajectories
+Project made for my Data Science Degree in the [University of Lille](https://www.univ-lille.fr/), the goal of this project is to implement a clustering algorithm in python which will be used on trajectories
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
